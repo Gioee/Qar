@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="it">
+  <%- include('./comp/head.ejs') %>
+
+  <body class="g-sidenav-show bg-gray-100">
+    <div class="min-height-300 bg-primary position-absolute w-100"></div>
+
+    <aside
+      class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4"
+      id="sidenav-main"
+    >
+      <%- include('./comp/sidenav.ejs') %>
+    </aside>
+
+    <main class="main-content position-relative border-radius-lg">
+      <%- include('./comp/navbar.ejs') %>
+      <div class="container-fluid py-4">
+        <div class="row">
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-sm mb-0 text-uppercase font-weight-bold">
+                        ODOMETRO
+                      </p>
+                      <h5 class="font-weight-bolder">125658KM</h5>
+                    </div>
+                  </div>
+                  <div class="col-4 text-end">
+                    <div
+                      class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle"
+                    >
+                      <i
+                        class="fa fa-caret-square-o-left text-lg opacity-10"
+                        aria-hidden="true"
+                      ></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-sm mb-0 text-uppercase font-weight-bold">
+                        Batteria
+                      </p>
+                      <h5 class="font-weight-bolder">12,6V</h5>
+                    </div>
+                  </div>
+                  <div class="col-4 text-end">
+                    <div
+                      class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle"
+                    >
+                      <i
+                        class="fa fa-battery-half text-lg opacity-10"
+                        aria-hidden="true"
+                      ></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-sm mb-0 text-uppercase font-weight-bold">
+                        Benzina
+                      </p>
+                      <h5 class="font-weight-bolder">23,5L</h5>
+                      <p class="mb-0">
+                        <span class="text-danger text-sm font-weight-bolder"
+                          >-2%</span
+                        >
+                        rispetto a ieri
+                      </p>
+                    </div>
+                  </div>
+                  <div class="col-4 text-end">
+                    <div
+                      class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle"
+                    >
+                      <i
+                        class="ni ni-delivery-fast text-lg opacity-10"
+                        aria-hidden="true"
+                      ></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-sm mb-0 text-uppercase font-weight-bold">
+                        Errori centralina
+                      </p>
+                      <h5 class="font-weight-bolder">0</h5>
+                    </div>
+                  </div>
+                  <div class="col-4 text-end">
+                    <div
+                      class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle"
+                    >
+                      <i
+                        class="fa fa-car text-lg opacity-10"
+                        aria-hidden="true"
+                      ></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-lg-7 mb-lg-0 mb-4">
+            <div class="card z-index-2">
+              <video id="videoPlayer" muted="muted" autoplay loop>
+                <source src="/video" type="video/mp4" />
+              </video>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="card card-carousel overflow-hidden h-100 p-0">
+              <div
+                id="carouselExampleCaptions"
+                class="carousel carousel-dark slide h-100"
+                data-bs-ride="carousel"
+              >
+                <div class="carousel-inner border-radius-lg h-100">
+                  <div class="carousel-item h-100 active">
+                    <div id="map0" style="height: 403px"></div>
+                  </div>
+                  <div class="carousel-item h-100">
+                    <div id="map1" style="height: 403px"></div>
+                  </div>
+                  <div class="carousel-item h-100">
+                    <div id="map2" style="height: 403px"></div>
+                  </div>
+                </div>
+                <button
+                  class="carousel-control-prev w-5 me-3"
+                  type="button"
+                  data-bs-target="#carouselExampleCaptions"
+                  data-bs-slide="prev"
+                >
+                  <span
+                    class="carousel-control-prev-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button
+                  class="carousel-control-next w-5 me-3"
+                  type="button"
+                  data-bs-target="#carouselExampleCaptions"
+                  data-bs-slide="next"
+                >
+                  <span
+                    class="carousel-control-next-icon"
+                    aria-hidden="false"
+                  ></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-lg-12 mb-lg-0 mb-4">
+            <div class="card">
+              <div class="card-header pb-0 p-3">
+                <div class="d-flex justify-content-between">
+                  <h6 class="mb-2">Veicoli</h6>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="table align-items-center">
+                  <tbody id="tabveicoli"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <%- include('./comp/footer.ejs') %>
+      </div>
+    </main>
+
+    <%- include('./comp/core.ejs') %>
+    <script>
+      let coor;
+      var map = L.map("map0").setView([41.902782, 12.496366], 4);
+      var map1 = L.map("map1").setView([41.902782, 12.496366], 4);
+      var map2 = L.map("map2").setView([41.902782, 12.496366], 4);
+
+      $(".carousel-control-next, .carousel-control-prev").click(function () {
+        map1.invalidateSize();
+        map2.invalidateSize();
+      });
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution:
+          '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      }).addTo(map);
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution:
+          '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      }).addTo(map1);
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution:
+          '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      }).addTo(map2);
+
+      setInterval(function () {
+        map1.invalidateSize();
+        map2.invalidateSize();
+      }, 1000);
+
+      const xhttp = new XMLHttpRequest();
+
+      xhttp.open("GET", "http://localhost:5500/coordinate", true);
+      xhttp.responseType = "json";
+
+      xhttp.send();
+
+      xhttp.onload = function () {
+        coor = xhttp.response;
+
+        L.marker([coor[0].lat, coor[0].lon]).addTo(map);
+        L.marker([coor[1].lat, coor[1].lon]).addTo(map1);
+        L.marker([coor[2].lat, coor[2].lon]).addTo(map2);
+      };
+
+      const xmlh = new XMLHttpRequest();
+      xmlh.open("GET", "http://localhost:5500/veicoli", true);
+      xmlh.responseType = "json";
+
+      xmlh.send();
+
+      xmlh.onload = function () {
+        veicoli = xmlh.response;
+
+        for (let i = 0; i < veicoli.length; i++) {
+          $("#tabveicoli").append(
+            "<tr>" +
+              "<td class='w-30'>" +
+              "<div class='d-flex px-2 py-1 align-items-center'>" +
+              " <div>" +
+              "<img src='./img/car-brands-logo" +
+              veicoli[i].img +
+              "'width=20% alt='Marca'/></div>" +
+              "<div class='ms-4'>" +
+              "<p class='text-xs font-weight-bold mb-0'>" +
+              veicoli[i].marca +
+              "</p>" +
+              "<h6 class='text-sm mb-0'>" +
+              veicoli[i].modello +
+              "</h6>" +
+              "</div>" +
+              "</div>" +
+              "</td>" +
+              "<td>" +
+              "<div class='text-center'>" +
+              "<p class='text-xs font-weight-bold mb-0'>Alimentazione:</p>" +
+              "<h6 class='text-sm mb-0'>" +
+              veicoli[i].alimentazione +
+              "</h6>" +
+              "</div>" +
+              "</td>" +
+              "<td>" +
+              "<div class='text-center'>" +
+              "<p class='text-xs font-weight-bold mb-0'>Cilindrata:</p>" +
+              "<h6 class='text-sm mb-0'>" +
+              veicoli[i].cilindrata +
+              "</h6>" +
+              "</div>" +
+              "</td>" +
+              "<td class='align-middle text-sm'>" +
+              "<div class='col text-center'>" +
+              "<p class='text-xs font-weight-bold mb-0'>Cavalli:</p>" +
+              "<h6 class='text-sm mb-0'>" +
+              veicoli[i].cavalli +
+              "</h6>" +
+              "</div>" +
+              "</td>" +
+              "</tr>"
+          );
+        }
+      };
+    </script>
+  </body>
+</html>

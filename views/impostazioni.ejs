@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="it">
+  <%- include('./comp/head.ejs') %>
+
+  <body class="g-sidenav-show bg-gray-100">
+    <div class="min-height-300 bg-primary position-absolute w-100"></div>
+    <aside
+      class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4"
+      id="sidenav-main"
+    >
+      <%- include('./comp/sidenav.ejs') %>
+    </aside>
+    <main class="main-content position-relative border-radius-lg">
+      <%- include('./comp/navbar.ejs') %>
+      <div class="container-fluid py-4">
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="row">
+              <div class="">
+                <h1>
+                  PAGINA NON DISPONIBILE, IL DISPOSITIVO IOT NON È ANCORA STATO
+                  RILASCIATO
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <%- include('./comp/footer.ejs') %>
+      </div>
+    </main>
+
+    <%- include('./comp/core.ejs') %>
+  </body>
+</html>

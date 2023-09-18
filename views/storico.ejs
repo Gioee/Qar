@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="it">
+  <%- include('./comp/head.ejs') %>
+
+  <body class="g-sidenav-show bg-gray-100">
+    <div class="min-height-300 bg-primary position-absolute w-100"></div>
+    <aside
+      class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4"
+      id="sidenav-main"
+    >
+      <%- include('./comp/sidenav.ejs') %>
+    </aside>
+    <main class="main-content position-relative border-radius-lg">
+      <%- include('./comp/navbar.ejs') %>
+
+      <div class="container-fluid py-4">
+        <div class="row">
+          <div class="col-12">
+            <div class="card mb-4">
+              <div class="card-header pb-0">
+                <h6>Cronologia registrazioni</h6>
+              </div>
+              <div class="card-body px-0 pt-0 pb-2">
+                <div class="table-responsive p-0">
+                  <table class="table align-items-center mb-0">
+                    <thead>
+                      <tr>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                        >
+                          Posizione
+                        </th>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                        >
+                          Accaduto
+                        </th>
+                        <th
+                          class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                        >
+                          Link video
+                        </th>
+                        <th
+                          class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                        >
+                          Data
+                        </th>
+                        <th class="text-secondary opacity-7"></th>
+                      </tr>
+                    </thead>
+                    <tbody id="tabregistrazioni"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="card mb-4">
+              <div class="card-header pb-0">
+                <h6>Veicoli</h6>
+              </div>
+              <div class="card-body px-0 pt-0 pb-2">
+                <div class="table-responsive p-0">
+                  <table
+                    class="table align-items-center justify-content-center mb-0"
+                  >
+                    <thead>
+                      <tr>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                        >
+                          Marca
+                        </th>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                        >
+                          Modello
+                        </th>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                        >
+                          Ping
+                        </th>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2"
+                        >
+                          Ricezione
+                        </th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody id="tabveicoli"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <%- include('./comp/footer.ejs') %>
+      </div>
+    </main>
+
+    <script>
+      const xmlh = new XMLHttpRequest();
+      xmlh.open("GET", "http://localhost:5500/veicoli", true);
+      xmlh.responseType = "json";
+
+      xmlh.send();
+
+      xmlh.onload = function () {
+        veicoli = xmlh.response;
+
+        for (let i = 0; i < veicoli.length; i++) {
+          $("#tabveicoli").append(
+            "<tr>" +
+              "<td>" +
+              "<div class='d-flex px-2'><div>" +
+              "<img src='./img/car-brands-logo" +
+              veicoli[i].img +
+              "' class='avatar avatar-sm rounded-circle me-2' alt='Marchio auto'/>" +
+              "</div>" +
+              "<div class='my-auto'>" +
+              "<h6 class='mb-0 text-sm'>" +
+              veicoli[i].marca +
+              "</h6>" +
+              "</div>" +
+              "</div>" +
+              "</td>" +
+              "<td>" +
+              " <p class='text-sm font-weight-bold mb-0'>" +
+              veicoli[i].modello +
+              "</p>" +
+              " </td>" +
+              "<td>" +
+              "<span class='text-xs font-weight-bold'>99ms</span>" +
+              "</td>" +
+              "<td class='align-middle text-center'>" +
+              "<div class='d-flex align-items-center justify-content-center'>" +
+              "<span class='me-2 text-xs font-weight-bold'>100%</span>" +
+              "<div>" +
+              "<div class='progress'>" +
+              "<div class='progress-bar bg-gradient-success' role='progressbar' aria-valuenow='100' aria-valuemin='0' aria-valuemax='100' style='width: 100%'></div>" +
+              "</div>" +
+              "</div>" +
+              "</div>" +
+              "</td>" +
+              "</tr >"
+          );
+        }
+      };
+
+      let coor;
+      const xhttp = new XMLHttpRequest();
+
+      xhttp.open("GET", "http://localhost:5500/coordinate", true);
+      xhttp.responseType = "json";
+
+      xhttp.send();
+
+      xhttp.onload = function () {
+        coor = xhttp.response;
+        for (let i = 0; i < coor.length; i++) {
+          console.log(coor[i].video);
+          $("#tabregistrazioni").append(
+            "<tr>" +
+              "                        <td>" +
+              '                          <div class="d-flex px-2 py-1">' +
+              "                            <div" +
+              '                              class="d-flex flex-column justify-content-center"' +
+              "                            >" +
+              '                              <p class="mb-0 text-sm"><a href="http://www.google.com/maps/place/' +
+              coor[i].lat +
+              "," +
+              coor[i].lon +
+              '">Mappa</a></p>' +
+              "                            </div>" +
+              "                          </div>" +
+              "                        </td>" +
+              "                        <td>" +
+              '                          <p class="text-xs text-secondary mb-0">' +
+              "                            " +
+              coor[i].accaduto +
+              "                          </p>" +
+              "                        </td>" +
+              '                        <td class="align-middle text-center text-sm">' +
+              '                          <a href="' +
+              coor[i].video +
+              '"><span class="badge badge-sm ' +
+              (coor[i].video > -1
+                ? "bg-gradient-secondary"
+                : "bg-gradient-success") +
+              '"' +
+              "                            >LINK</span" +
+              "                          ></a>" +
+              "                        </td>" +
+              '                        <td class="align-middle text-center">' +
+              '                          <span class="text-secondary text-xs font-weight-bold"' +
+              "                            >" +
+              coor[i].data +
+              "</span" +
+              "                          >" +
+              "                        </td>" +
+              '                        <td class="align-middle">' +
+              "                          <a" +
+              '                            href="javascript:;"' +
+              '                            class="text-secondary font-weight-bold text-xs"' +
+              '                            data-toggle="tooltip"' +
+              '                            data-original-title="Edit user"' +
+              "                          >" +
+              "                            Elimina" +
+              "                          </a>" +
+              "                        </td>" +
+              "                      </tr>"
+          );
+        }
+      };
+    </script>
+
+    <%- include('./comp/core.ejs') %>
+  </body>
+</html>
